@@ -32,15 +32,12 @@ class Personaje {
   }
 
   dibujar() {
-    if (this.explota) {
-      image(this.imagenColision, this.x - this.tam, this.y - this.tam, this.tam * 2, this.tam * 2);
-    } else {
-      fill(255, 0);
-      stroke(0, 0);
-      circle(this.x, this.y * 2, this.tam);
-      image(this.imagen, this.x - this.tam / 2, this.y - this.tam / 4, this.tam, this.tam);
-    }
+   if (this.explota) {
+    image(this.imagenColision, this.x - this.tam, this.y - this.tam, this.tam * 2, this.tam * 2);
+  } else {
+    image(this.imagen, this.x - this.tam / 2, this.y - this.tam / 4, this.tam, this.tam);
   }
+}
 
   mover(param1) {
     this.x = this.x + param1;
@@ -69,11 +66,11 @@ class Personaje {
 }
 
 class Enemigo extends Personaje {
-  constructor(x, y, tam, juego) {
-    super(random(0, width), random(height + 50, height + 750), tam * 2.5);
-    this.imagen = loadImage("assets/imagenes/enemigo.png");
-    this.juego = juego;
-  }
+ constructor(x, y, tam, juego) {
+  super(x, y, tam * 2.5);
+  this.imagen = loadImage("assets/imagenes/enemigo.png");
+  this.juego = juego;
+}
 
   desaparecer() {
     this.x = width + 100; 
