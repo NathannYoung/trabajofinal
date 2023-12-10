@@ -7,25 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="personalizado.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.18.0/font/bootstrap-icons.css" rel="stylesheet">
-    <script>
-    var isPlaying = false;
-
-    function playCancion() {
-        var audio = document.getElementById("miAudio");
-
-        if (isPlaying) {
-            audio.pause();
-            isPlaying = false;
-        } else {
-            audio.play();
-            isPlaying = true;
-        }
-    }
-
-    document.getElementById("miIframe").onload = function () {
-        console.log("El iframe se ha cargado");
-    };
-</script>
+    
 </head>
   <body>
     
@@ -216,17 +198,35 @@
                 <img src="imagenes/arriba.png" alt="Una imagen de una flecha para arriba.">
             </a>
             <h2>Juego:</h2>
-           
+        
             <audio id="miAudio" loop style="display:none">
                 <source src="imagenes/cancion.ogg" type="audio/ogg">
                 Tu navegador no soporta el elemento de audio.
             </audio>
-           
-            <button class="btn btn-light centrada btn-reproducir" onclick="playCancion()">¡Juega con música!</button>
-            
-            <iframe class="iframe-adaptable iframe-centrable" id="miIframe" src="tpfinal/index.html" frameborder="80"></iframe>
         
+            <button class="btn btn-light centrada btn-reproducir" onclick="toggleCancion()">¡Juega con música!</button>
+        
+            <iframe class="iframe-adaptable iframe-centrable" id="miIframe" src="tpfinal/index.html" frameborder="80"></iframe>
         </article>
+        
+        <script>
+            var audio = document.getElementById("miAudio");
+            var boton = document.querySelector(".btn-reproducir");
+        
+            function toggleCancion() {
+                if (audio.paused) {
+                    audio.play();
+                    boton.textContent = "¡Deten la música!";
+                } else {
+                    audio.pause();
+                    boton.textContent = "¡Juega con música!";
+                }
+            }
+        
+            document.getElementById("miIframe").onload = function () {
+                console.log("El iframe se ha cargado");
+            };
+        </script>
 
       <a href="#arriba" class="flecha-arriba">
         <img src="imagenes/arriba.png" alt="Una imagen de una flecha para arriba.">
